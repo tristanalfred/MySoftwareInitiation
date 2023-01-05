@@ -2,4 +2,4 @@ venv/
 .idea/
 db.sqlite3
 **/__pycache__
-*.pyc
+**/__pycache__/**
