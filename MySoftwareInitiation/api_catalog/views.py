@@ -7,7 +7,7 @@ class CheckApi(viewsets.ViewSet):
     View returning 200 to check if an API works correctly
     """
 
-    def list(self):
+    def list(self, _request):
         """
         Return a list of all users.
         """
