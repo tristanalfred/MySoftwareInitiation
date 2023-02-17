@@ -21,6 +21,7 @@ from MySoftwareInitiation.api_catalog import views
 
 router = routers.DefaultRouter()
 router.register(r'check', views.CheckApi, basename='check')
+router.register(r'web-scraping/archetypes', views.WebScrapingArchetypes, basename='ws-archetypes')
 
 # Wire up our API using automatic URL routing.
 # Additionally, we include login URLs for the browsable API.
