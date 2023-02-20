@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/4.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
-
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -125,3 +125,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 URL_MD = "https://www.masterduelmeta.com/"
 URL_MD_TOP = URL_MD + "top-decks"
+SELENIUM_HOST = os.environ.get('SELENIUM_HOST', None)
+SELENIUM_PORT = os.environ.get('SELENIUM_PORT', None)
+SELENIUM_URL = f"http://{SELENIUM_HOST}:{SELENIUM_PORT}" if SELENIUM_HOST and SELENIUM_PORT else None
+

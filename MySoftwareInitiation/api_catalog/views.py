@@ -1,3 +1,5 @@
+import time
+
 from rest_framework.response import Response
 from rest_framework import viewsets, status
 
@@ -11,10 +13,11 @@ from selenium.webdriver.support import expected_conditions as EC
 
 from MySoftwareInitiation import settings
 
-delay = 3  # seconds
+delay = 1  # seconds
 WINDOW_SIZE = "1920,1080"
 chrome_options = Options()
-chrome_options.add_argument("--headless")
+chrome_options.add_argument('--blink-settings=imagesEnabled=false')
+# chrome_options.add_argument("--headless")
 
 
 class CheckApi(viewsets.ViewSet):
@@ -32,14 +35,24 @@ class WebScrapingArchetypes(viewsets.ViewSet):
     """
 
     def list(self, _request):
-        driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()),
-                                  options=chrome_options)
+        if settings.SELENIUM_URL:
+            driver = webdriver.Remote(settings.SELENIUM_URL,
+                                      options=chrome_options)  # For Docker deployment
+        else:
+            driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()),
+                                      options=chrome_options)  # For local deployment
+
         driver.get(settings.URL_MD_TOP)
 
-        elements_archetype = WebDriverWait(driver, delay). \
-            until(EC.presence_of_all_elements_located(
-            (By.XPATH, '//*[@id="svelte"]/main/div/div[3]/div[7]/div/div/div/div[*]/div/div[1]/div[2]')))
+        # elements_archetype = WebDriverWait(driver, delay). \
+        #     until(EC.presence_of_all_elements_located(
+        #     (By.XPATH, '//*[@id="svelte"]/main/div/div[3]/div[7]/div/div/div/div[*]/div/div[1]/div[2]')))
+
+        elements_archetype = \
+            driver.find_elements(By.XPATH,
+                                 '//*[@id="svelte"]/main/div/div[3]/div[7]/div/div/div/div[*]/div/div[1]/div[2]')
 
         archetypes = [x.text for x in elements_archetype]
+        driver.quit()
 
         return Response(status=status.HTTP_200_OK, data={'archetypes': archetypes})
