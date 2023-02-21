@@ -5,4 +5,4 @@ Se connecter à un conteneur : sudo docker exec -it XXXXXXXXX bash
 Stopper conteneur           : docker stop CTN_NAME
 Détruire conteneur          : docker rm -f CTN_NAME
 
-Récupérer conteneur         : docker pull xxxx
+Récupérer conteneur         : docker pull xxxxx
