@@ -1,0 +1,8 @@
+Créer image                 : docker build --no-cache -t imagename .
+Démarrer conteneur nommé    : docker run -p 8000:8000 --name CTN_NAME imagename
+Liste conteneurs            : docker ps
+Se connecter à un conteneur : sudo docker exec -it XXXXXXXXX bash
+Stopper conteneur           : docker stop CTN_NAME
+Détruire conteneur          : docker rm -f CTN_NAME
+
+Récupérer conteneur         : docker pull xxxx
