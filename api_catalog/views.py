@@ -1,5 +1,4 @@
-import time
-
+from django.shortcuts import render
 from rest_framework.response import Response
 from rest_framework import viewsets, status
 
@@ -18,6 +17,16 @@ WINDOW_SIZE = "1920,1080"
 chrome_options = Options()
 chrome_options.add_argument('--blink-settings=imagesEnabled=false')
 # chrome_options.add_argument("--headless")
+
+
+def homepage_view(request):
+    with open("./README.md") as f:
+        content = f.readlines()
+
+    context = {
+        "readme": content
+    }
+    return render(request, "home.html", context)
 
 
 class CheckApi(viewsets.ViewSet):

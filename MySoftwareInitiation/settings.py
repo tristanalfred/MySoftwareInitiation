@@ -31,6 +31,9 @@ ALLOWED_HOSTS = ['localhost', '0.0.0.0', '127.0.0.1']
 # Application definition
 
 INSTALLED_APPS = [
+    'api_catalog',
+    'web_scraper',
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -55,7 +58,7 @@ ROOT_URLCONF = 'MySoftwareInitiation.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
