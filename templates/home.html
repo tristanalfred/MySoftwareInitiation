@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<h1>Home</h1>
+{% for x in readme %}
+    <h3>{{ x }}</h3>
+{% endfor %}
+
+
+{% endblock %}
