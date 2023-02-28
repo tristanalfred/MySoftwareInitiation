@@ -4,6 +4,7 @@ This project allows me to discover new software, etc. via mini projects to compl
 List to integrate:
 - Docker
 - Web scraping
+- Django templates
 - Redis
 - Celery
 - APIs REST
@@ -12,6 +13,6 @@ List to integrate:
 Project corresponding to the different technologies:
 
 - Docker : project deployment
-- Web scraping: analysis of players' decisions via the MasterDuelMeta site
+- Web scraping : analysis of players' decisions via the MasterDuelMeta site
 - Machine Learning + Redis + Celery : Service allowing to send a text and to return the value processed by the ML. Redis, etc. allow to process the request in the background without blocking the server.
-- APIs REST : various uses in the project
+- APIs REST + Django templates : various uses in the project
