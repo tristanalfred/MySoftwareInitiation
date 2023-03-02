@@ -131,4 +131,3 @@ URL_MD_TOP = URL_MD + "top-decks"
 SELENIUM_HOST = os.environ.get('SELENIUM_HOST', None)
 SELENIUM_PORT = os.environ.get('SELENIUM_PORT', None)
 SELENIUM_URL = f"http://{SELENIUM_HOST}:{SELENIUM_PORT}" if SELENIUM_HOST and SELENIUM_PORT else None
-
