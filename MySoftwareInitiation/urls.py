@@ -13,15 +13,14 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.urls import include, path
+from django.urls import include, path, re_path
 from rest_framework import routers
 
-from api_catalog.views import homepage_view, CheckApi, WebScrapingArchetypes
+from api_catalog.views import homepage_view, CheckApi
 from web_scraper.views import archetypes_view
 
 router = routers.DefaultRouter()
 router.register(r'check', CheckApi, basename='check')
-router.register(r'web-scraping/archetypes', WebScrapingArchetypes, basename='ws-archetypes')
 
 # Wire up our API using automatic URL routing.
 # Additionally, we include login URLs for the browsable API.
@@ -29,5 +28,5 @@ urlpatterns = [
     # path('', include(router.urls)),
     path('', homepage_view, name='home'),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
-    path('archetypes', archetypes_view, name='archetypes')
+    re_path('archetypes/$', archetypes_view, name='archetypes')
 ]
