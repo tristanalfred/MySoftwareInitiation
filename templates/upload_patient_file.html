@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block body %}
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <input type="file" name="patient_file">
+    <button type="submit">Upload</button>
+  </form>
+
+  {% if file_uploaded %}
+    <p>File uploaded !</p>
+  {% endif %}
+
+{% endblock %}

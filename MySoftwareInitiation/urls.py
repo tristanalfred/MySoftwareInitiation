@@ -16,7 +16,7 @@ Including another URLconf
 from django.urls import include, path, re_path
 from rest_framework import routers
 
-from api_catalog.views import homepage_view, CheckApi
+from api_catalog.views import homepage_view, CheckApi, upload_patient_file_view
 from web_scraper.views import archetypes_view
 
 router = routers.DefaultRouter()
@@ -28,5 +28,6 @@ urlpatterns = [
     # path('', include(router.urls)),
     path('', homepage_view, name='home'),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
-    re_path('archetypes/$', archetypes_view, name='archetypes')
+    re_path('archetypes/$', archetypes_view, name='archetypes'),
+    re_path('upload-patient-file/$', upload_patient_file_view, name='upload-patient-file'),
 ]

@@ -52,3 +52,4 @@ def archetypes_view(request):
         return Response(status=status.HTTP_200_OK, data=context)
     else:
         return render(request, "archetypes.html", context)
+
