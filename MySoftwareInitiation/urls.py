@@ -13,6 +13,7 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from django.contrib import admin
 from django.urls import include, path, re_path
 from rest_framework import routers
 
@@ -26,6 +27,7 @@ router.register(r'check', CheckApi, basename='check')
 # Additionally, we include login URLs for the browsable API.
 urlpatterns = [
     # path('', include(router.urls)),
+    path('admin/', admin.site.urls),
     path('', homepage_view, name='home'),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     re_path('archetypes/$', archetypes_view, name='archetypes'),

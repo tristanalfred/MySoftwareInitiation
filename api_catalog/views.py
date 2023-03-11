@@ -1,7 +1,6 @@
 import csv
 import io
 from django.shortcuts import render
-from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import viewsets, status
 
@@ -30,11 +29,6 @@ class CheckApi(viewsets.ViewSet):
         return Response(status=status.HTTP_200_OK)
 
 
-# Create your views here.
-# @api_view(['GET'])
-# def upload_patient_file_view(request):
-#     return render(request, "upload_patient_file.html")
-
 def upload_patient_file_view(request):
     if request.method == 'POST' and request.FILES['patient_file']:
         patient_file = request.FILES['patient_file']
@@ -43,15 +37,22 @@ def upload_patient_file_view(request):
         file = patient_file.read().decode('utf-8')
         reader = csv.DictReader(io.StringIO(file))
 
-        # Generate a list comprehension
-        data = [line for line in reader]
+        for line in reader:
+            if not Patient.objects.filter(first_name=line["first_name"], last_name=line["last_name"]):
+                patient = Patient(first_name=line["first_name"], last_name=line["last_name"])
+                patient.save()
+            else:
+                patient = Patient.objects.filter(first_name=line["first_name"], last_name=line["last_name"]).first()
 
-        # for line in reader:
-        #     if creat
-        #
-        #     print(line)
+            if not Service.objects.filter(name=line["service"]):
+                service = Service(name=line["service"])
+                service.save()
+            else:
+                service = Service.objects.filter(name=line["service"]).first()
 
-
+            if patient.service != service:
+                patient.service = service
+                patient.save()
 
         return render(request, 'upload_patient_file.html', {
             'file_uploaded': True

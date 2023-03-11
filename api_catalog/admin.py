@@ -1,3 +1,14 @@
 from django.contrib import admin
+from api_catalog.models import Patient, Service
 
-# Register your models here.
+
+class PatientAdmin(admin.ModelAdmin):
+    pass
+
+
+class ServiceAdmin(admin.ModelAdmin):
+    pass
+
+
+admin.site.register(Patient, PatientAdmin)
+admin.site.register(Service, ServiceAdmin)
