@@ -2,12 +2,15 @@ from django.contrib import admin
 from api_catalog.models import Patient, Service
 
 
-class PatientAdmin(admin.ModelAdmin):
-    pass
-
-
 class ServiceAdmin(admin.ModelAdmin):
-    pass
+    list_display = ("name",)
+
+
+class PatientAdmin(admin.ModelAdmin):
+    list_display = ("first_name", "last_name", "get_service",)
+
+    def get_service(self, obj):
+        return obj.service.name
 
 
 admin.site.register(Patient, PatientAdmin)
