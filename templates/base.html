@@ -8,14 +8,18 @@
         {% endblock %}
     </head>
     <body>
+        {% url 'home' as home_url %}
+        {% url 'archetypes' as archetypes_url %}
+        {% url 'upload-patient-file' as upload_patient_file_url %}
+
         <nav class="navbar navbar-inverse">
           <div class="container-fluid">
             <div class="navbar-header">
               <a class="navbar-brand" href="{% url 'home' %}">MySoftwareInitiation</a>
             </div>
             <ul class="nav navbar-nav">
-              <li class="active"><a href="{% url 'home' %}">Home</a></li>
-              <li class="dropdown">
+              <li class="nav-item {% if request.path == home_url %} active {%endif%}"><a href="{% url 'home' %}"> Home </a></li>
+              <li class="dropdown nav-item {% if request.path == archetypes_url %} active {%endif%}">
                 <a class="dropdown-toggle" data-toggle='dropdown' href="#">Web scraper<span class="caret"></span></a>
                 <ul class="dropdown-menu">
                   <li><a href="{% url 'archetypes' %}">Archetypes</a></li>
@@ -23,7 +27,7 @@
                   <li><a href="#">Page 1-3</a></li>
                 </ul>
               </li>
-              <li><a href="{% url 'upload-patient-file' %}">Upload-patient-file</a></li>
+              <li class="nav-item {% if request.path == upload_patient_file_url %} active {%endif%}"><a href="{% url 'upload-patient-file' %}">Upload-patient-file</a></li>
               <li><a href="#">Page 3</a></li>
             </ul>
           </div>
